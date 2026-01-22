@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Papa Francisco</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'cne-blue': '#1A4175',
+              'cne-blue-light': '#2157A2',
+              'cne-blue-dark': '#0F2C52',
+              'cne-gold': '#FDB913',
+              'cne-gold-light': '#FFCD4D',
+              'cne-green': '#1B5E20',
+              'cne-orange': '#E64A19',
+              'parchment': '#FCF9F2',
+              'papal-gold': '#FFD700',
+              'dark-surface': '#0F172A',
+              'dark-card': '#1E293B'
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'bounce-slow': 'bounce 3s infinite',
+              'float': 'float 4s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            },
+            boxShadow: {
+              'premium': '0 20px 50px -12px rgba(0, 0, 0, 0.08)',
+              'gold-glow': '0 0 20px rgba(253, 185, 19, 0.2)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Cairo', sans-serif;
+        transition: background-color 0.5s ease;
+      }
+      h1, h2, h3, h4, .serif-font {
+        font-family: 'Cairo', sans-serif;
+        font-weight: 700;
+      }
+      .bg-parchment-texture {
+        background-color: #FCF9F2;
+        background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+      }
+      .dark .bg-parchment-texture {
+        background-color: #0F172A;
+        background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+      }
+      .scrollbar-hide::-webkit-scrollbar { display: none; }
+      .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+      @keyframes slideInLeft {
+        from { opacity: 0; transform: translateX(-30px) scale(0.95); }
+        to { opacity: 1; transform: translateX(0) scale(1); }
+      }
+      @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(30px) scale(0.95); }
+        to { opacity: 1; transform: translateX(0) scale(1); }
+      }
+
+      .bot-message-container {
+        display: flex;
+        gap: 20px;
+        margin: 32px 0;
+        align-items: flex-start;
+      }
+
+      .bot-message {
+        background: white;
+        border-radius: 24px;
+        border-bottom-left-radius: 4px;
+        padding: 28px;
+        box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05);
+        max-width: 85%;
+        animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        position: relative;
+        border: 1px solid rgba(0,0,0,0.03);
+      }
+      .dark .bot-message {
+        background: #1E293B;
+        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
+        color: #F1F5F9;
+        border-color: rgba(255,255,255,0.05);
+      }
+
+      .user-message-container {
+        display: flex;
+        justify-content: flex-end;
+        margin: 32px 0;
+      }
+
+      .user-message {
+        background: linear-gradient(135deg, #2157A2 0%, #1A4175 100%);
+        color: #FFFFFF;
+        border-radius: 24px;
+        border-bottom-right-radius: 4px;
+        padding: 20px 28px;
+        box-shadow: 0 12px 24px -8px rgba(33, 87, 162, 0.3);
+        max-width: 75%;
+        animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      .papa-avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 20px;
+        border: 3px solid #FDB913;
+        box-shadow: 0 8px 20px rgba(253, 185, 19, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .papa-avatar:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 12px 25px rgba(253, 185, 19, 0.4);
+      }
+
+      .azimute-card {
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        border: 1px solid rgba(0,0,0,0.04);
+      }
+      .azimute-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 30px 60px -12px rgba(0,0,0,0.12);
+        border-color: rgba(253, 185, 19, 0.3);
+      }
+      .dark .azimute-card:hover {
+        box-shadow: 0 30px 60px -12px rgba(0,0,0,0.5);
+      }
+
+      .member-card {
+        background: white;
+        border-radius: 24px;
+        padding: 20px;
+        text-align: center;
+        border: 1px solid rgba(0,0,0,0.05);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .dark .member-card {
+        background: #334155;
+        border-color: rgba(255,255,255,0.05);
+      }
+      .member-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 30px -5px rgba(0,0,0,0.08);
+        border-color: #FDB913;
+      }
+
+      .glass-effect {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-parchment-texture text-slate-800 dark:text-slate-200 antialiased h-screen overflow-hidden">
+    <div id="root" class="h-full"></div>
+  </body>
+</html>

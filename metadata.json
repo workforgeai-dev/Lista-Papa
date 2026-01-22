@@ -1,0 +1,7 @@
+{
+  "name": "Assistente Lista Papa Francisco",
+  "description": "Assistente virtual da candidatura à Junta Central do CNE, focado em união, serviço e no lema 'O Rumo és Tu!'.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
